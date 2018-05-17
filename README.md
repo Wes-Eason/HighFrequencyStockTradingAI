@@ -1,5 +1,7 @@
-# PythonStockPredictor
-A basic example of utilizing Tensorflow and Matplotlib to visualize and better understand how an artificial intelligence can make sense of information from the stock market, and attempt to evaluate better investing decisions.
+# HighFrequencyStockTradingAI
+This program is an example of how artificial intelligence can make sense of information from the stock market, and attempt to evaluate better investing decisions.
 
-By taking historical stock-market data, we're able to graph it, and add a moving average of the end-of-day price.
+Below are visualizations and explanations showcasing the development and thought-process behind our this artificial intelligence works.
+
+First, we import the the history of a stock, graph it so it's easy to understand, and create a moving average graph to help understand the momentum of the stock.
 ![alt text](graph1.png)
