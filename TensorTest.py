@@ -13,9 +13,10 @@ Coloring plotted lines as a heat-graph to show how content the AI is with it's d
 """
 
 #Dependencies are imported here
-import tensorflow
+import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as pt
+import numpy as np
 
 #Import the stock data using pandas, a very useful library that can manipulate csv files.
 data = pd.read_csv('sp500.csv')
@@ -91,3 +92,36 @@ pt.scatter(a,b,s=area,c=colors,alpha=0.5)
 pt.show()
 
 #Bookmark for additional development on structuring data into tensorflow.
+num_epochs = 100
+total_series_length = 1000
+truncated_backprop_length = 15
+state_size = 4
+num_classes = 2
+echo_step = 3
+batch_size = 5
+num_batches = total_series_length//batch_size//truncated_backprop_length
+
+print("ready for mess with:")
+print(data)
+
+#Starting nodes of the neural network.
+batchX_placeholder = tf.placeholder(tf.float32, [batch_size, truncated_backprop_length])
+batchY_placeholder = tf.placeholder(tf.float32, [batch_size, truncated_backprop_length])
+
+#Created a state in order to keep track of where the neural network is at.
+init_state = tf.placeholder(tf.float32, [batch_size, state_size])
+
+#Created weights for incremental variable persistance (yes I'm adding a better explanation :D)
+W = tf.Variable(np.random.rand(state_size+1, state_size), dtype=tf.float32)
+b = tf.Variable(np.zeros((1,state_size)), dtype=tf.float32)
+
+#Second copy!
+W2 = tf.Variable(np.random.rand(state_size+1, state_size), dtype=tf.float32)
+b2 = tf.Variable(np.zeros((1,state_size)), dtype=tf.float32)
+
+#Recurrent Neural Network Computation
+inputs_series = tf.unpack(batchX_placeholder, axis=1)
+labels_series = tf.unpack(batchY_placeholder, axis=1)
+#Unpacks columns of neural visualization into single python lists,
+#so we get multiple 'thinking' lines.
+#Continuing development, needs initialization and back-propogation cleanup!
