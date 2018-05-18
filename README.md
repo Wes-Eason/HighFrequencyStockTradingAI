@@ -1,4 +1,5 @@
 # HighFrequencyStockTradingAI
+# Do not run currently, extremely memory intensive.
 This program is an example of how artificial intelligence can make sense of information from the stock market, and attempt to evaluate better investing decisions.
 
 Below are visualizations and explanations showcasing the development and thought-process behind our this artificial intelligence works.
